@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LATIAN DOM ubahWarna</title>
+    <style>
+        html , body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            text-align: center;
+            background-color: #ddd;
+        }
+        button, .kotak {
+            text-align: center;
+            display: block;
+            margin: 20px auto;
+            width: 70px;
+            height: 70px;
+            background-color: black;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+        }
+        .gantiTema {
+            background-color: #778;
+        }
+        .merah { background-color: red; }
+        .hijau { background-color: green; }
+        .biru { background-color: blue; }
+
+    </style>
+
+</head>
+
+<body>
+
+    <h1>Bermain dengan Warna</h1>
+    <button type="button" id="tUbahWarna">TEMA</button>
+
+    <br><br>
+    <div class="kotak merah"></div>
+    <input type="range" name="kadarMerah" min="0" max="255">
+
+    <div class="kotak hijau"></div>
+    <input type="range" name="kadarHijau" min="0" max="255">
+
+    <div class="kotak biru"></div>
+    <input type="range" name="kadarBiru" min="0" max="255">
+
+    <script>
+        const body = document.getElementsByTagName('body')[0];
+        const tombolGantiTema = document.getElementsByTagName('button')[0];
+
+        tombolGantiTema.addEventListener('click', function () {
+            body.classList.toggle('gantiTema');
+            body.style.transition = '1s';
+        });
+
+        //  buat button pake js untuk muncullin warna random
+        const buttonBuatan1 = document.createElement('button');
+        const text1 = document.createTextNode('ubah \n warna');
+        buttonBuatan1.appendChild(text1);
+        buttonBuatan1.setAttribute('type', 'button')
+        tombolGantiTema.after(buttonBuatan1);           //munculkan buttonbuatan1 setelah tombolgantitema
+
+        buttonBuatan1.addEventListener('click', function () {
+            const r = Math.floor(Math.random() * 255 + 1);
+            const g = Math.floor(Math.random() * 255 + 1);
+            const b = Math.floor(Math.random() * 255 + 1);
+            // console.log(r)
+            // console.log(g)
+            // console.log(b)
+            body.style.backgroundColor = 'rgb(' + r + ',' + g + ',' + b + ')';
+        });
+
+        const kadarMerah = document.querySelector('input[name="kadarMerah"]');
+        const kadarHijau = document.querySelector('input[name="kadarHijau"]');
+        const kadarBiru = document.querySelector('input[name="kadarBiru"]');
+        kadarMerah.addEventListener('input', function () {             //input untuk tiap gerak kek slider gt secara real time,klo change enggak
+            const r = kadarMerah.value;
+            const g = kadarHijau.value;
+            const b = kadarBiru.value;
+            body.style.backgroundColor = 'rgb(' + r + ',' + g + ',' + b + ')';
+        });
+        kadarHijau.addEventListener('input', function () {             //input untuk tiap gerak kek slider gt secara real time,klo change enggak
+            const r = kadarMerah.value;
+            const g = kadarHijau.value;
+            const b = kadarBiru.value;
+            body.style.backgroundColor = 'rgb(' + r + ',' + g + ',' + b + ')';
+        });
+        kadarBiru.addEventListener('input', function () {             //input untuk tiap gerak kek slider gt secara real time,klo change enggak
+            const r = kadarMerah.value;
+            const g = kadarHijau.value;
+            const b = kadarBiru.value;
+            body.style.backgroundColor = 'rgb(' + r + ',' + g + ',' + b + ')';
+        });
+
+        // body.addEventListener('mousemove', function (event) {
+        //     const posisiX = Math.floor((event.clientX / window.innerWidth) * 255);
+        //     const posisiY = Math.floor((event.clientY / window.innerHeight) * 255);
+        //     const posisiZ = Math.floor(Math.random() * 255 + 1);
+        //     body.style.backgroundColor = 'rgb(' + posisiX + ',' + posisiY + ',' + posisiZ + ')';
+        // });
+    </script>
+
+
+
+</body>
+
+</html>
